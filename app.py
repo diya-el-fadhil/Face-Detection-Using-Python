@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 import cv2
 import numpy as np
 import base64
+import os
 
 app = Flask(__name__)
 
@@ -23,6 +24,10 @@ def index():
         result_image = base64.b64encode(buffer).decode('utf-8')
         return render_template('index.html', result_image=result_image)
     return render_template('index.html')
+
+@app.route('/assets/<path:filename>')
+def serve_asset(filename):
+    return send_from_directory(os.path.join(app.root_path, '..', 'Assets'), filename)
 
 if __name__ == '__main__':
     app.run(debug=True)
