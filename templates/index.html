@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Detection App</title>
+    <link rel="stylesheet" href="./static/index.css">
+</head>
+<body>
+    <h1>Face Detection App</h1>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <button type="submit">Detect Faces</button>
+    </form>
+    {% if result_image %}
+        <h2>Result:</h2>
+        <img src="data:image/jpeg;base64,{{ result_image }}" alt="Result">
+    {% endif %}
+</body>
+</html>
