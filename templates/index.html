@@ -8,13 +8,26 @@
 </head>
 <body>
     <h1>Face Detection App</h1>
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="image" accept="image/*" required>
-        <button type="submit">Detect Faces</button>
-    </form>
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            <div class="file-input-wrapper">
+                <span>Choose an image</span>
+                <input type="file" name="image" accept="image/*" required id="file-input">
+            </div>
+            <div class="file-name" id="file-name"></div>
+            <button type="submit">Detect Faces</button>
+        </form>
+    </div>
     {% if result_image %}
         <h2>Result:</h2>
         <img src="data:image/jpeg;base64,{{ result_image }}" alt="Result">
     {% endif %}
+
+    <script>
+        document.getElementById('file-input').addEventListener('change', function(e) {
+            var fileName = e.target.files[0].name;
+            document.getElementById('file-name').textContent = 'Selected file: ' + fileName;
+        });
+    </script>
 </body>
 </html>
